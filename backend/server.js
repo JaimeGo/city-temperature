@@ -8,33 +8,33 @@ const ws = new WebSocket('ws://localhost.com:3001/ws', {
 const citiesInfo = [
 	{
 		name: 'Santiago (CL)',
-		latitude: '',
-		longitude: ''
+		latitude: '-33.445992',
+		longitude: '-70.667061'
 	},
 	{
 		name: 'Zurich (CH)',
-		latitude: '',
-		longitude: ''
+		latitude: '47.376888',
+		longitude: '8.538030'
 	},
 	{
 		name: 'Auckland (NZ)',
-		latitude: '',
-		longitude: ''
+		latitude: '-36.848461',
+		longitude: '174.763336'
 	},
 	{
 		name: 'Sydney (AU)',
-		latitude: '',
-		longitude: ''
+		latitude: '-33.868820',
+		longitude: '151.209290'
 	},
 	{
-		name: 'Londres (UK)',
-		latitude: '',
-		longitude: ''
+		name: 'London (UK)',
+		latitude: '51.517576',
+		longitude: '-0.079786'
 	},
 	{
 		name: 'Georgia (USA)',
-		latitude: '',
-		longitude: ''
+		latitude: '33.756529',
+		longitude: '-84.400996'
 	}
 ];
 
