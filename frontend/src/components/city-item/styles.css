@@ -1,0 +1,42 @@
+.container {
+  display: table-cell;
+  vertical-align: top;
+}
+.container:nth-child(even) {
+  background-color: #262936;
+}
+@media screen and (max-width: 990px) {
+  .container {
+    display: block;
+    width: 16.6667%;
+    float: left;
+  }
+}
+
+.container .header {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  text-align: center;
+  font-weight: 400;
+  border-radius: 0 0 10px 10px;
+}
+.container .degree-icon {
+  height: 50px;
+}
+.container .content {
+  padding: 50px 20px 10px;
+  text-align: center;
+}
+.container .content .degree-icon {
+  margin-bottom: 20px;
+}
+.container .content .degree {
+  font-size: 24px;
+  font-size: 1.7142857143em;
+  color: white;
+  font-weight: 700;
+}
+.container .content small {
+  font-size: 16px;
+  font-size: 1.1428571429em;
+}

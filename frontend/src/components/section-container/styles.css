@@ -1,0 +1,29 @@
+.section-container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  *zoom: 1;
+}
+.section-container:after {
+  content: " ";
+  clear: both;
+  display: block;
+  overflow: hidden;
+  height: 0;
+}
+@media (min-width: 768px) {
+  .section-container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .section-container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .section-container {
+    width: 1170px;
+  }
+}
