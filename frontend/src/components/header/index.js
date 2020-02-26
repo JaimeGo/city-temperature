@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles.css";
+import logo from "../../assets/images/logo.png";
 
 const Header = () => {
   return (
@@ -7,11 +8,7 @@ const Header = () => {
       <div className="site-header">
         <div className="container">
           <a href="index.html" className="branding">
-            <img
-              src="../../src/assets/images/logo.png"
-              alt=""
-              className="logo"
-            ></img>
+            <img src={logo} alt="" className="logo"></img>
             <div className="logo-type">
               <h1 className="site-title">City Temperature</h1>
               <small className="site-description">by Jaime González</small>

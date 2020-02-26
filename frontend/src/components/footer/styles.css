@@ -17,6 +17,7 @@
   transition: 0.3s ease;
   font-size: 20px;
   font-size: 1.4285714286em;
+  margin-right: 10px;
 }
 .site-footer .social-links a:hover {
   background: #009ad8;

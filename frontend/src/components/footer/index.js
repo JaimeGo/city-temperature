@@ -13,6 +13,7 @@ const Footer = () => {
               <p className="colophon">
                 Design by Jaime González based on template by Themezy
               </p>
+              <p className="colophon">Powered by Dark Sky</p>
             </div>
             <div className="col-md-3 col-md-offset-1">
               <div className="social-links">
