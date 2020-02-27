@@ -34,10 +34,10 @@ const CityTable = () => {
       });
       console.log("NEW CITIES", newCities);
 
-      setCities(newCities);
+      await setCities(newCities);
     };
 
-    console.log(Object.entries(cities));
+    console.log("ENTRIES", Object.entries(cities));
 
     return () => {
       ws.close();
