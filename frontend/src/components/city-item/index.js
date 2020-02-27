@@ -2,7 +2,7 @@ import React from "react";
 import "./styles.css";
 
 const CityItem = ({ dataOfCity }) => {
-  const { name, degree, hour } = dataOfCity;
+  const [name, { hour, temperature }] = dataOfCity;
   return (
     <div>
       <div className="container">
@@ -14,7 +14,7 @@ const CityItem = ({ dataOfCity }) => {
             <img src="images/icons/icon-5.svg" alt="" width={48}></img>
           </div>
           <div className="degree">
-            {degree}
+            {temperature}
             <sup>o</sup>C
           </div>
           <small>{hour}</small>
