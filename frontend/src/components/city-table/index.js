@@ -45,7 +45,7 @@ const CityTable = () => {
     return () => {
       ws.close();
     };
-  });
+  }, [cities]);
 
   return (
     <div style={{ backgroundImage: `url(${backgroundImage})` }}>
