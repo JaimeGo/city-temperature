@@ -37,7 +37,7 @@ const CityTable = () => {
       setCities(newCities);
     };
 
-    console.log("ENTRIES", Object.entries(cities));
+    console.log(Object.entries(cities));
 
     return () => {
       ws.close();

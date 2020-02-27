@@ -26,6 +26,7 @@ function getLogo(cityName) {
 }
 
 const CityItem = ({ city }) => {
+  console.log("CITYITEM", city);
   const [name, { hour, temperature }] = city;
   return (
     <div>
