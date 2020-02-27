@@ -20,6 +20,7 @@ const CityTable = () => {
     const ws = new WebSocket("wss://wsserver-temperature.herokuapp.com");
 
     ws.onmessage = event => {
+      console.log("EVENT", event);
       const response = JSON.parse(event.data);
       const responseCities = response.data;
 
