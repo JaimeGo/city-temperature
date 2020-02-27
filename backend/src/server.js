@@ -19,12 +19,13 @@ const namesOfCities = [
 ];
 
 wss.on('connection', function(ws) {
-	const intervalId = setInterval(function() {
+	const intervalId = setInterval(async function() {
 		const apiResults = namesOfCities.map(async cityName => {
 			const { latitude, longitude } = await getCoordinates(cityName);
 
 			return await getCityInfo(cityName, latitude, longitude);
 		});
+		await Promise.all(apiResults);
 		console.log('APIRESULTS', apiResults);
 		ws.send(JSON.stringify(apiResults));
 	}, 10000);
