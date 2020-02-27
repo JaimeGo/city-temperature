@@ -22,6 +22,7 @@ export async function getCityInfo(cityName, latitude, longitude) {
 		if (error.message === 'How unfortunate! The API Request Failed') {
 			await registerApiError(cityName);
 		}
+		console.error(error);
 	}
 
 	return { name: cityName, hour: null, temperature: null };
