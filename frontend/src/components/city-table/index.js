@@ -18,7 +18,6 @@ const CityTable = () => {
 
   useEffect(() => {
     const ws = new WebSocket("wss://wsserver-temperature.herokuapp.com");
-    ws.binaryType = "blob";
 
     ws.onmessage = event => {
       console.log("EVENT", event);

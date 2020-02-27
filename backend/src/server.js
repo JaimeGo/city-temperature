@@ -25,7 +25,7 @@ wss.on('connection', function(ws) {
 
 			return await getCityInfo(cityName, latitude, longitude);
 		});
-		ws.send(apiResults);
+		ws.send(JSON.stringify(apiResults));
 	}, 10000);
 
 	console.log('Websocket connection opened');
