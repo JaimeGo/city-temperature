@@ -21,6 +21,9 @@ const CityTable = () => {
 
     ws.onmessage = event => {
       console.log("EVENT", event);
+      const reader = new FileReader();
+      const responseExperiment = reader.readAsText(event.data);
+      console.log("RESPONSE", responseExperiment);
       const response = JSON.parse(event.data);
       const responseCities = response.data;
 
