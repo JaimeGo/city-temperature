@@ -1,8 +1,8 @@
 import React from "react";
 import "./styles.css";
 
-const CityItem = ({ dataOfCity }) => {
-  const [name, { hour, temperature }] = dataOfCity;
+const CityItem = ({ city }) => {
+  const [name, { hour, temperature }] = city;
   return (
     <div>
       <div className="container">
