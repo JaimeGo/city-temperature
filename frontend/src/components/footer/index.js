@@ -14,6 +14,9 @@ const Footer = () => {
                 Design by Jaime González based on template by Themezy
               </p>
               <p className="colophon">Powered by Dark Sky</p>
+              <p className="colophon">
+                Icons made by Roundicons and Freepik from www.flaticon.com
+              </p>
             </div>
             <div className="col-md-3 col-md-offset-1">
               <div className="social-links">
