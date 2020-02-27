@@ -1,4 +1,4 @@
-import redisClient from './redisClient.js';
+import redisClient from './redisClient';
 
 export async function getCoordinates(cityName) {
 	try {

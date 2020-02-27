@@ -1,7 +1,7 @@
-import redis from 'redis';
-const client = redis.createClient(process.env.REDIS_URL);
+import Redis from 'ioredis';
+const redis = new Redis(process.env.REDIS_URL);
 
-client.on('connect', function() {
+redis.on('connect', function() {
 	console.log('Redis client connected');
 
 	const citiesInfo = [
@@ -39,15 +39,15 @@ client.on('connect', function() {
 
 	citiesInfo.forEach(async cityInfo => {
 		const { latitude, longitude } = cityInfo;
-		await client.set(cityInfo.name, JSON.stringify({ latitude, longitude }));
+		await redis.set(cityInfo.name, JSON.stringify({ latitude, longitude }));
 	});
 	console.log(
 		'The latitude and the longitude of each city was inserted to Redis'
 	);
 });
 
-client.on('error', function(err) {
+redis.on('error', function(err) {
 	console.log('Redis client could not establish connection' + err);
 });
 
-export default client;
+export default redis;
