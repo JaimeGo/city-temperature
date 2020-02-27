@@ -7,6 +7,7 @@ export async function getCityInfo(cityName, latitude, longitude) {
 			throw new Error('How unfortunate! The API Request Failed');
 
 		const response = await apiClient.get(`/${latitude},${longitude}`);
+		console.log('DARKSKYRESPONSE', response);
 
 		const { currently } = response;
 		const { time, temperature } = currently;
