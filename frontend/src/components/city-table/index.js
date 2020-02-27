@@ -36,11 +36,8 @@ const CityTable = () => {
 
       setCities(newCities);
     };
-    ws.onclose = () => {
-      ws.close();
-    };
 
-    console.log(Object.entries(cities));
+    console.log("ENTRIES", Object.entries(cities));
 
     return () => {
       ws.close();
