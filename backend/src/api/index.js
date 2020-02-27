@@ -9,12 +9,14 @@ export async function getCityInfo(cityName, latitude, longitude) {
 
 		console.log('START CALL TO API');
 		const response = await apiClient.get(`/${latitude},${longitude}`);
-		console.log('DARKSKYRESPONSE', response);
+		console.log('DARKSKYRESPONSE CURRENTLY', response.currently);
 
 		const { currently } = response;
 		const { time, temperature } = currently;
 		const currentDate = new Date(time);
+		console.log('CURRENT DATE', currentDate);
 		const hour = `${currentDate.getHours()}:${currentDate.getMinutes()}`;
+		console.log('RESPONSE OBJECT', { name: cityName, hour, temperature });
 		return { name: cityName, hour, temperature };
 	} catch (error) {
 		if (error.message === 'How unfortunate! The API Request Failed') {
