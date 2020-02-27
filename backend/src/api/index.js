@@ -3,9 +3,11 @@ import { registerApiError } from '../redis';
 
 export async function getCityInfo(cityName, latitude, longitude) {
 	try {
+		console.log('GETCITYINFO METHOD');
 		if (Math.rand(0, 1) < 0.1)
 			throw new Error('How unfortunate! The API Request Failed');
 
+		console.log('START CALL TO API');
 		const response = await apiClient.get(`/${latitude},${longitude}`);
 		console.log('DARKSKYRESPONSE', response);
 
