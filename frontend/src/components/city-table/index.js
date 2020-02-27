@@ -18,10 +18,14 @@ const CityTable = () => {
 
   useEffect(() => {
     const ws = new WebSocket("wss://wsserver-temperature.herokuapp.com");
+    ws.binaryType = "blob";
 
     ws.onmessage = event => {
       console.log("EVENT", event);
       const reader = new FileReader();
+      reader.onload = () => {
+        console.log("Result: " + reader.result);
+      };
       const responseExperiment = reader.readAsText(event.data);
       console.log("RESPONSE", responseExperiment);
       const response = JSON.parse(event.data);
