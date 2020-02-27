@@ -17,7 +17,7 @@ const CityTable = () => {
   });
 
   useEffect(() => {
-    const ws = new WebSocket("wss://wsserver-temperature.herokuapp.com:5000");
+    const ws = new WebSocket("wss://wsserver-temperature.herokuapp.com:10173");
 
     ws.onmessage = event => {
       const response = JSON.parse(event.data);

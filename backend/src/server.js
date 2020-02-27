@@ -1,7 +1,7 @@
 import WebSocketServer from 'ws';
 import http from 'http';
-import { getCityInfo } from './api/index.js';
-import { getCoordinates } from './redis/index.js';
+import { getCityInfo } from './api';
+import { getCoordinates } from './redis';
 
 const server = http.createServer();
 
