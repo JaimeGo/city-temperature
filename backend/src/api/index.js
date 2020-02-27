@@ -9,9 +9,9 @@ export async function getCityInfo(cityName, latitude, longitude) {
 
 		console.log('START CALL TO API');
 		const response = await apiClient.get(`/${latitude},${longitude}`);
-		console.log('DARKSKYRESPONSE CURRENTLY', response.currently);
+		console.log('DARKSKYRESPONSE CURRENTLY', response.data.currently);
 
-		const { currently } = response;
+		const { currently } = response.data;
 		const { time, temperature } = currently;
 		const currentDate = new Date(time);
 		console.log('CURRENT DATE', currentDate);
