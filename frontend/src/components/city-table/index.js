@@ -21,8 +21,8 @@ const CityTable = () => {
 
     ws.onmessage = event => {
       console.log("Event data:", event.data);
-      const response = JSON.parse(event.data);
-      const responseCities = response.data;
+      const responseCities = JSON.parse(event.data);
+      console.log("RESPONSE CITIES", responseCities);
 
       let newCities = cities;
 
@@ -32,6 +32,7 @@ const CityTable = () => {
           newCities[name] = { hour, temperature };
         }
       });
+      console.log("NEW CITIES", newCities);
 
       setCities(newCities);
     };
