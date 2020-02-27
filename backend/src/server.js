@@ -25,6 +25,7 @@ wss.on('connection', function(ws) {
 
 			return await getCityInfo(cityName, latitude, longitude);
 		});
+		console.log('APIRESULTS', apiResults);
 		ws.send(JSON.stringify(apiResults));
 	}, 10000);
 
