@@ -9,7 +9,14 @@ const wss = new WebSocketServer.Server({ server: server });
 
 console.log('Websocket server created');
 
-const namesOfCities = [];
+const namesOfCities = [
+	'Santiago (CL)',
+	'Zurich (CH)',
+	'Auckland (NZ)',
+	'Sydney (AU)',
+	'London (UK)',
+	'Georgia (USA)'
+];
 
 wss.on('connection', function(ws) {
 	const intervalId = setInterval(function() {
