@@ -11,6 +11,11 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",
+    "ioredis": "^4.16.0",
     "ws": "^7.2.1"
+  },
+  "type": "module",
+  "engines": {
+    "node": "13.9"
   }
 }
