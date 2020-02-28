@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CityItem from "../city-item";
 import "./styles.css";
-import socketIOClient from "socket.io-client";
+
 import cloneDeep from "lodash.clonedeep";
 
 import backgroundImage from "../../assets/images/background-image.jpg";
@@ -18,12 +18,11 @@ const CityTable = () => {
     "Georgia (USA)": { hour: "--:--", temperature: "--" }
   });
 
-  const socket = socketIOClient("https://wsserver-temperature.herokuapp.com");
-
   useEffect(() => {
-    socket.on("New City Info", responseCities => {
-      // console.log("Event data:", event.data);
-      // const responseCities = JSON.parse(data);
+    const ws = new WebSocket("wss://wsserver-temperature.herokuapp.com");
+    ws.onmessage = event => {
+      console.log("Event data:", event.data);
+      const responseCities = JSON.parse(event.data);
       console.log("RESPONSE CITIES", responseCities);
 
       let newCities = cloneDeep(cities);
@@ -36,14 +35,16 @@ const CityTable = () => {
       });
       console.log("NEW CITIES", newCities);
 
-      setCities(newCities, () => {
+      return setCities(newCities, () => {
         console.log("STATE CITIES", cities);
       });
+    };
 
-      return () => {
-        socket.emit("disconnect");
-      };
-    });
+    console.log("ENTRIES", Object.entries(cities));
+
+    return () => {
+      ws.close();
+    };
   }, [cities]);
 
   console.log("ENTRIES", Object.entries(cities));

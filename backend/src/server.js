@@ -1,11 +1,11 @@
-import socketIo from 'socket.io';
+import WebSocketServer from 'ws';
 import http from 'http';
 import { getCityInfo } from './api';
 import { getCoordinates } from './redis';
 
 const server = http.createServer();
 
-const io = socketIo(server);
+const wss = new WebSocketServer.Server({ server: server });
 
 console.log('Websocket server created');
 
@@ -18,7 +18,7 @@ const namesOfCities = [
 	'Georgia (USA)'
 ];
 
-io.on('connection', function(socket) {
+wss.on('connection', function(ws) {
 	const intervalId = setInterval(async function() {
 		const apiPromises = namesOfCities.map(async cityName => {
 			const { latitude, longitude } = await getCoordinates(cityName);
@@ -26,12 +26,13 @@ io.on('connection', function(socket) {
 			return await getCityInfo(cityName, latitude, longitude);
 		});
 		const apiResults = await Promise.all(apiPromises);
-		socket.emit('New City Info', apiResults);
+		console.log('APIRESULTS', apiResults);
+		ws.send(JSON.stringify(apiResults));
 	}, 10000);
 
 	console.log('Websocket connection opened');
 
-	socket.on('disconnect', () => {
+	ws.on('close', function() {
 		console.log('Websocket connection closed');
 		clearInterval(intervalId);
 	});
