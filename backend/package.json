@@ -13,8 +13,6 @@
     "axios": "^0.19.2",
     "esm": "^3.2.25",
     "ioredis": "^4.16.0",
-    "moment-timezone": "^0.5.28",
-    "socket.io": "^2.3.0",
     "ws": "^7.2.1"
   },
   "engines": {

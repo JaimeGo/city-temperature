@@ -20,4 +20,6 @@ git subtree push --prefix frontend heroku-frontend master
 
 - La llave de darksky se guarda como variable de entorno del backend (DARKSKY_KEY).
 
-- Se ocupa ESM en el backend para contar con las características de las versiones más modernas de Javascript (particularmente ES modules).
+- Se ocupa el paquete "esm" en el backend para contar con las características de las versiones más modernas de Javascript (particularmente ES modules).
+
+- Se ocupa el paquete "ws" para la comunicación con Websockets en el backend, y un objeto de una api web llamado Websocket en el frontend.

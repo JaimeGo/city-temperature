@@ -5,13 +5,6 @@
 .container:nth-child(even) {
   background-color: #262936;
 }
-@media screen and (max-width: 990px) {
-  .container {
-    display: block;
-    width: 16.6667%;
-    float: left;
-  }
-}
 
 .container .header {
   background: rgba(0, 0, 0, 0.1);

@@ -22,7 +22,7 @@ const CityTable = () => {
     const ws = new WebSocket("wss://wsserver-temperature.herokuapp.com");
     ws.onmessage = event => {
       const responseCities = JSON.parse(event.data);
-      console.log("RESPONSE CITIES", responseCities);
+      console.log("Data received: ", responseCities);
 
       let newCities = cloneDeep(cities);
 

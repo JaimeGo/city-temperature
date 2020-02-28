@@ -22,6 +22,8 @@ function getLogo(cityName) {
       return UnitedKingdomLogo;
     case "Georgia (USA)":
       return UnitedStatesLogo;
+    default:
+      return "";
   }
 }
 
