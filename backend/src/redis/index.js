@@ -2,7 +2,8 @@ import redisClient from './redisClient';
 
 export async function getCoordinates(cityName) {
 	try {
-		const { latitude, longitude } = await redisClient.hgetall(cityName);
+		const latitude = await redisClient.hget(cityName, 'latitude');
+		const longitude = await redisClient.hget(cityName, 'longitude');
 		return { latitude, longitude };
 	} catch (error) {
 		console.error(error);
@@ -11,7 +12,8 @@ export async function getCoordinates(cityName) {
 
 export async function getHourAndTemperature(cityName) {
 	try {
-		const { hour, temperature } = await redisClient.hgetall(cityName);
+		const hour = await redisClient.hget(cityName, 'hour');
+		const temperature = await redisClient.hget(cityName, 'temperature');
 		return { hour, temperature };
 	} catch (error) {
 		console.error(error);
