@@ -1,6 +1,8 @@
-# city-temperature
+# City temperature app
 
 ## Deployment de backend
+
+En primer lugar es necesario setear las variables de entorno BACKEND_URL y DARKSKY_KEY. Además es necesario obtener una instancia de Heroku-Redis. Yo hice ambas cosas a través de la página web de Heroku.
 
 Desde la raiz del repo:
 
