@@ -2,7 +2,7 @@
 
 ## Deployment de backend
 
-En primer lugar es necesario setear las variables de entorno BACKEND_URL y DARKSKY_KEY. Además es necesario obtener una instancia de Heroku-Redis. Yo hice ambas cosas a través de la página web de Heroku.
+En primer lugar es necesario setear la variable de entorno DARKSKY_KEY. Además es necesario obtener una instancia de Heroku-Redis. Yo hice ambas cosas a través de la página web de Heroku.
 
 Desde la raiz del repo:
 
@@ -16,6 +16,8 @@ git subtree push --prefix backend heroku-backend master
 
 ## Deployment de frontend
 
+Es necesario setear la variable de entorno BACKEND_URL.
+
 Desde la raiz del repo:
 
 ```
@@ -27,8 +29,6 @@ git subtree push --prefix frontend heroku-frontend master
 ```
 
 ## Notas
-
-- La llave de darksky se guarda como variable de entorno del backend (DARKSKY_KEY).
 
 - Se ocupa el paquete "esm" en el backend para contar con las características de las versiones más modernas de Javascript (particularmente ES modules).
 
