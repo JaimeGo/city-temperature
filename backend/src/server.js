@@ -29,7 +29,11 @@ const intervalFunction = async function(ws) {
 };
 
 wss.on('connection', async function(ws) {
-	await intervalFunction(ws);
+	// Only gets called when page first loads
+	wss.on('message', async function(_) {
+		await intervalFunction(ws);
+	});
+
 	const intervalId = setInterval(() => intervalFunction(ws), 10000);
 
 	console.log('Websocket connection opened');

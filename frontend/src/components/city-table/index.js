@@ -18,25 +18,45 @@ const CityTable = () => {
     "Georgia (USA)": { hour: "--:--", temperature: "--" }
   });
 
-  const ws = new WebSocket("wss://wsserver-temperature.herokuapp.com");
-  ws.onmessage = event => {
-    const responseCities = JSON.parse(event.data);
+  const handleWebsocketConnection = () => {
+    const ws = new WebSocket("wss://wsserver-temperature.herokuapp.com");
+    ws.onmessage = event => {
+      const responseCities = JSON.parse(event.data);
 
-    let newCities = cloneDeep(cities);
+      let newCities = cloneDeep(cities);
 
-    responseCities.forEach(responseCity => {
-      const { name, hour, temperature } = responseCity;
-      if (hour && temperature) {
-        newCities[name] = { hour, temperature };
-      }
-    });
+      responseCities.forEach(responseCity => {
+        const { name, hour, temperature } = responseCity;
+        if (hour && temperature) {
+          newCities[name] = { hour, temperature };
+        }
+      });
 
-    setCities(newCities);
+      setCities(newCities);
+    };
+
+    ws.onclose = () => {
+      ws.close();
+    };
   };
 
-  ws.onclose = () => {
-    ws.close();
-  };
+  // Runs only once, when the page loads for the first time or reloads
+  useEffect(() => {
+    handleWebsocketConnection();
+    const ws = new WebSocket("wss://wsserver-temperature.herokuapp.com");
+    ws.send("Page loaded");
+    return () => {
+      ws.close();
+    };
+  }, []);
+
+  // Runs every time cities change
+  useEffect(() => {
+    handleWebsocketConnection();
+    return () => {
+      ws.close();
+    };
+  }, [cities]);
 
   return (
     <div style={{ backgroundImage: `url(${backgroundImage})` }}>
