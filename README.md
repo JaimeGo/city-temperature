@@ -16,7 +16,7 @@ git subtree push --prefix backend heroku-backend master
 
 ## Deployment de frontend
 
-Es necesario setear la variable de entorno BACKEND_URL.
+Es necesario setear la variable de entorno REACT_APP_BACKEND_URL.
 
 Desde la raiz del repo:
 
