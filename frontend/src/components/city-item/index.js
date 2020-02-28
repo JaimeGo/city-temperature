@@ -40,7 +40,7 @@ const CityItem = ({ city }) => {
           </div>
           <div className="degree">
             {temperature}
-            <sup>o</sup>C
+            <sup>o</sup>F
           </div>
           <small>{hour}</small>
         </div>
