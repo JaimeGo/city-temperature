@@ -22,7 +22,7 @@ const intervalFunction = async function(ws) {
 	const apiPromises = namesOfCities.map(async cityName => {
 		const { latitude, longitude } = await getCoordinates(cityName);
 
-		return await getCityInfo(cityName, latitude, longitude);
+		return getCityInfo(cityName, latitude, longitude);
 	});
 	const apiResults = await Promise.all(apiPromises);
 	console.log('APIRESULTS', apiResults);
@@ -31,7 +31,7 @@ const intervalFunction = async function(ws) {
 
 wss.on('connection', async function(ws) {
 	await intervalFunction(ws);
-	const intervalId = setInterval(async () => await intervalFunction(ws), 10000);
+	const intervalId = setInterval(() => intervalFunction(ws), 10000);
 
 	console.log('Websocket connection opened');
 
