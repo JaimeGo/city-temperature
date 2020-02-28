@@ -19,7 +19,7 @@ const CityTable = () => {
   });
 
   useEffect(() => {
-    const ws = new WebSocket("wss://wsserver-temperature.herokuapp.com");
+    const ws = new WebSocket(process.env.BACKEND_URL);
     ws.onmessage = event => {
       const responseCities = JSON.parse(event.data);
       console.log("Data received: ", responseCities);
