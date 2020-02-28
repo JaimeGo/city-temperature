@@ -2,19 +2,27 @@
 
 ## Deployment de backend
 
+Desde la raiz del repo:
+
+```
 heroku create wsserver-temperature
 
 git remote rename heroku heroku-backend
 
 git subtree push --prefix backend heroku-backend master
+```
 
 ## Deployment de frontend
 
+Desde la raiz del repo:
+
+```
 heroku create -b https://github.com/mars/create-react-app-buildpack.git temperature-hour
 
 git remote rename heroku heroku-frontend
 
 git subtree push --prefix frontend heroku-frontend master
+```
 
 ## Notas
 
