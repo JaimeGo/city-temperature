@@ -18,7 +18,7 @@ const CityTable = () => {
     "Georgia (USA)": { hour: "--:--", temperature: "--" }
   });
 
-  const handleWebsocketConnection = () => {
+  useEffect(() => {
     const ws = new WebSocket("wss://wsserver-temperature.herokuapp.com");
     ws.onmessage = event => {
       const responseCities = JSON.parse(event.data);
@@ -39,21 +39,6 @@ const CityTable = () => {
       ws.close();
     };
 
-    return ws;
-  };
-
-  // Runs only once, when the page loads for the first time or reloads
-  useEffect(() => {
-    const ws = handleWebsocketConnection();
-    ws.onopen = () => ws.send("Page loaded");
-    return () => {
-      ws.close();
-    };
-  }, []);
-
-  // Runs every time cities change
-  useEffect(() => {
-    const ws = handleWebsocketConnection();
     return () => {
       ws.close();
     };
