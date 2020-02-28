@@ -1,6 +1,6 @@
 import WebSocketServer from 'ws';
 import http from 'http';
-import { getCityInfo } from './api';
+import { getCityInfo } from './darksky';
 import { getCoordinates } from './redis';
 
 const server = http.createServer();
