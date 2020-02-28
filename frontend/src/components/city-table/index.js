@@ -19,7 +19,7 @@ const CityTable = () => {
   });
 
   useEffect(() => {
-    const ws = new WebSocket(process.env.BACKEND_URL);
+    const ws = new WebSocket(process.env.REACT_APP_BACKEND_URL);
     ws.onmessage = event => {
       const responseCities = JSON.parse(event.data);
       console.log("Data received: ", responseCities);
