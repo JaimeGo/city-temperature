@@ -25,7 +25,6 @@ const intervalFunction = async function(ws) {
 		return getCityInfo(cityName, latitude, longitude);
 	});
 	const apiResults = await Promise.all(apiPromises);
-	console.log('APIRESULTS', apiResults);
 	ws.send(JSON.stringify(apiResults));
 };
 

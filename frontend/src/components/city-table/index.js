@@ -21,26 +21,19 @@ const CityTable = () => {
   useEffect(() => {
     const ws = new WebSocket("wss://wsserver-temperature.herokuapp.com");
     ws.onmessage = event => {
-      console.log("Event data:", event.data);
       const responseCities = JSON.parse(event.data);
-      console.log("RESPONSE CITIES", responseCities);
 
       let newCities = cloneDeep(cities);
-      console.log("AFTER CLONE DEEP", newCities);
 
       responseCities.forEach(responseCity => {
         const { name, hour, temperature } = responseCity;
         if (hour && temperature) {
           newCities[name] = { hour, temperature };
-          console.log(name);
         }
       });
-      console.log("NEW CITIES", newCities);
 
       setCities(newCities);
     };
-
-    console.log("ENTRIES", Object.entries(cities));
 
     ws.onclose = () => {
       ws.close();
@@ -50,8 +43,6 @@ const CityTable = () => {
       ws.close();
     };
   }, [cities]);
-
-  console.log("ENTRIES", Object.entries(cities));
 
   return (
     <div style={{ backgroundImage: `url(${backgroundImage})` }}>
