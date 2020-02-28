@@ -4,6 +4,7 @@ import {
 	getHourAndTemperature,
 	setHourAndTemperature
 } from '../redis';
+import getTimeInTimezone from './timezone';
 
 export async function getCityInfo(cityName, latitude, longitude) {
 	try {
@@ -17,9 +18,7 @@ export async function getCityInfo(cityName, latitude, longitude) {
 
 		const { currently } = response.data;
 		const { time, temperature } = currently;
-		const currentDate = new Date(time);
-		console.log('CURRENT DATE', currentDate);
-		const hour = `${currentDate.getHours()}:${currentDate.getMinutes()}`;
+		const hour = getTimeInTimezone(cityName, time);
 		await setHourAndTemperature(cityName, hour, temperature.toString());
 		console.log('RESPONSE OBJECT', { name: cityName, hour, temperature });
 		return { name: cityName, hour, temperature };
