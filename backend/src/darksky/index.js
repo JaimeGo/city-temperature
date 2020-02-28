@@ -20,7 +20,7 @@ export async function getCityInfo(cityName, latitude, longitude) {
 		const currentDate = new Date(time);
 		console.log('CURRENT DATE', currentDate);
 		const hour = `${currentDate.getHours()}:${currentDate.getMinutes()}`;
-		await setHourAndTemperature(cityName, hour, temperature);
+		await setHourAndTemperature(cityName, hour, temperature.toString());
 		console.log('RESPONSE OBJECT', { name: cityName, hour, temperature });
 		return { name: cityName, hour, temperature };
 	} catch (error) {
