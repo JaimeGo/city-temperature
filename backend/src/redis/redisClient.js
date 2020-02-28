@@ -36,14 +36,17 @@ redis.on('connect', function() {
 			longitude: '-84.400996'
 		}
 	];
-
-	citiesInfo.forEach(async cityInfo => {
-		const { latitude, longitude } = cityInfo;
-		await redis.hmset(cityInfo.name, { latitude, longitude });
-	});
-	console.log(
-		'The latitude and the longitude of each city was inserted to Redis'
-	);
+	try {
+		citiesInfo.forEach(async cityInfo => {
+			const { latitude, longitude } = cityInfo;
+			await redis.hmset(cityInfo.name, { latitude, longitude });
+		});
+		console.log(
+			'The latitude and the longitude of each city was inserted to Redis'
+		);
+	} catch (error) {
+		console.error(error);
+	}
 });
 
 redis.on('error', function(err) {

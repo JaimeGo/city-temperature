@@ -20,7 +20,8 @@ export async function getHourAndTemperature(cityName) {
 
 export async function setHourAndTemperature(cityName, hour, temperature) {
 	try {
-		await redisClient.hmset(cityName, { hour, temperature });
+		await redisClient.hset(cityName, 'hour', hour);
+		await redisClient.hset(cityName, 'temperature', temperature);
 	} catch (error) {
 		console.error(error);
 	}
