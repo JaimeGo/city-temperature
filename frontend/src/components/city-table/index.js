@@ -17,11 +17,11 @@ const CityTable = () => {
     "Georgia (USA)": { hour: "--:--", temperature: "--" }
   });
 
-  const socket = socketIOClient("http://wsserver-temperature.herokuapp.com");
+  const socket = socketIOClient("https://wsserver-temperature.herokuapp.com");
 
-  socket.on("FromBackend", async event => {
-    console.log("Event data:", event.data);
-    const responseCities = JSON.parse(event.data);
+  socket.on("New City Info", responseCities => {
+    // console.log("Event data:", event.data);
+    // const responseCities = JSON.parse(data);
     console.log("RESPONSE CITIES", responseCities);
 
     let newCities = cities;
@@ -34,7 +34,7 @@ const CityTable = () => {
     });
     console.log("NEW CITIES", newCities);
 
-    await setCities(newCities, () => {
+    setCities(newCities, () => {
       console.log("STATE CITIES", cities);
     });
   });
