@@ -12,7 +12,6 @@ export async function getCityInfo(cityName, latitude, longitude) {
 		if (Math.random() < 0.1)
 			throw new Error('How unfortunate! The API Request Failed');
 
-		console.log('START CALL TO API');
 		const response = await darkskyClient.get(`/${latitude},${longitude}`);
 		console.log('DARKSKYRESPONSE CURRENTLY', response.data.currently);
 
