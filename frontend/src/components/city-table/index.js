@@ -34,7 +34,9 @@ const CityTable = () => {
       });
       console.log("NEW CITIES", newCities);
 
-      return setCities(newCities);
+      return setCities(newCities, () => {
+        console.log("STATE CITIES", cities);
+      });
     };
 
     console.log("ENTRIES", Object.entries(cities));
