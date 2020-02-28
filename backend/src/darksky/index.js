@@ -16,9 +16,9 @@ export async function getCityInfo(cityName, latitude, longitude) {
 		const response = await darkskyClient.get(`/${latitude},${longitude}`);
 		console.log('DARKSKYRESPONSE CURRENTLY', response.data.currently);
 
-		const { currently } = response.data;
+		const { currently, timezone } = response.data;
 		const { time, temperature } = currently;
-		const hour = getTimeInTimezone(cityName, time);
+		const hour = getTimeInTimezone(time, timezone);
 		await setHourAndTemperature(cityName, hour, temperature.toString());
 		console.log('RESPONSE OBJECT', { name: cityName, hour, temperature });
 		return { name: cityName, hour, temperature };
