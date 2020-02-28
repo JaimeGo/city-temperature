@@ -18,31 +18,25 @@ const CityTable = () => {
     "Georgia (USA)": { hour: "--:--", temperature: "--" }
   });
 
-  useEffect(() => {
-    const ws = new WebSocket("wss://wsserver-temperature.herokuapp.com");
-    ws.onmessage = event => {
-      const responseCities = JSON.parse(event.data);
+  const ws = new WebSocket("wss://wsserver-temperature.herokuapp.com");
+  ws.onmessage = event => {
+    const responseCities = JSON.parse(event.data);
 
-      let newCities = cloneDeep(cities);
+    let newCities = cloneDeep(cities);
 
-      responseCities.forEach(responseCity => {
-        const { name, hour, temperature } = responseCity;
-        if (hour && temperature) {
-          newCities[name] = { hour, temperature };
-        }
-      });
+    responseCities.forEach(responseCity => {
+      const { name, hour, temperature } = responseCity;
+      if (hour && temperature) {
+        newCities[name] = { hour, temperature };
+      }
+    });
 
-      setCities(newCities);
-    };
+    setCities(newCities);
+  };
 
-    ws.onclose = () => {
-      ws.close();
-    };
-
-    return () => {
-      ws.close();
-    };
-  }, [cities]);
+  ws.onclose = () => {
+    ws.close();
+  };
 
   return (
     <div style={{ backgroundImage: `url(${backgroundImage})` }}>
