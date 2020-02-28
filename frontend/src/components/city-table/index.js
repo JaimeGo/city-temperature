@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CityItem from "../city-item";
 import "./styles.css";
+import socketIOClient from "socket.io-client";
 
 import backgroundImage from "../../assets/images/background-image.jpg";
 
@@ -16,9 +17,9 @@ const CityTable = () => {
     "Georgia (USA)": { hour: "--:--", temperature: "--" }
   });
 
-  const ws = new WebSocket("wss://wsserver-temperature.herokuapp.com");
+  const socket = socketIOClient("http://wsserver-temperature.herokuapp.com");
 
-  ws.onmessage = event => {
+  socket.on("FromBackend", async event => {
     console.log("Event data:", event.data);
     const responseCities = JSON.parse(event.data);
     console.log("RESPONSE CITIES", responseCities);
@@ -33,10 +34,10 @@ const CityTable = () => {
     });
     console.log("NEW CITIES", newCities);
 
-    setCities(newCities, () => {
+    await setCities(newCities, () => {
       console.log("STATE CITIES", cities);
     });
-  };
+  });
 
   console.log("ENTRIES", Object.entries(cities));
 
