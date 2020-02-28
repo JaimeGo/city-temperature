@@ -22,5 +22,6 @@ export default function getTimeInTimezone(cityName, timeInSeconds) {
 		// Same timezone, Georgia is not available
 		tzTime = moment.tz(timeInSeconds, 'America/Nassau');
 	}
-	return tzTime.format('hh:mm');
+	console.log('TIMEZONE', tzTime.format('HH:mm'));
+	return tzTime.format('HH:mm');
 }
