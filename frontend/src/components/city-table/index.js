@@ -38,11 +38,7 @@ const CityTable = () => {
     ws.onclose = () => {
       ws.close();
     };
-
-    return () => {
-      ws.close();
-    };
-  }, [cities]);
+  }, []);
 
   return (
     <div style={{ backgroundImage: `url(${backgroundImage})` }}>
