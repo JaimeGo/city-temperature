@@ -26,18 +26,18 @@ const CityTable = () => {
       console.log("RESPONSE CITIES", responseCities);
 
       let newCities = cloneDeep(cities);
+      console.log("AFTER CLONE DEEP", newCities);
 
       responseCities.forEach(responseCity => {
         const { name, hour, temperature } = responseCity;
         if (hour && temperature) {
           newCities[name] = { hour, temperature };
+          console.log(name);
         }
       });
       console.log("NEW CITIES", newCities);
 
-      return setCities(newCities, () => {
-        console.log("STATE CITIES", cities);
-      });
+      setCities(newCities);
     };
 
     console.log("ENTRIES", Object.entries(cities));
