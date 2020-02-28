@@ -38,12 +38,13 @@ const CityTable = () => {
     ws.onclose = () => {
       ws.close();
     };
+
+    return ws;
   };
 
   // Runs only once, when the page loads for the first time or reloads
   useEffect(() => {
-    handleWebsocketConnection();
-    const ws = new WebSocket("wss://wsserver-temperature.herokuapp.com");
+    const ws = handleWebsocketConnection();
     ws.send("Page loaded");
     return () => {
       ws.close();
@@ -52,7 +53,7 @@ const CityTable = () => {
 
   // Runs every time cities change
   useEffect(() => {
-    handleWebsocketConnection();
+    const ws = handleWebsocketConnection();
     return () => {
       ws.close();
     };
