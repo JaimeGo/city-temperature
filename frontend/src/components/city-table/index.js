@@ -22,7 +22,7 @@ const CityTable = () => {
     const ws = new WebSocket(process.env.REACT_APP_BACKEND_URL);
     ws.onmessage = event => {
       const responseCities = JSON.parse(event.data);
-      console.log("Data received: ", responseCities);
+      console.log("Data received from backend: ", responseCities);
 
       let newCities = cloneDeep(cities);
 
