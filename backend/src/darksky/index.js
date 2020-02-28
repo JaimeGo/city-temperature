@@ -12,7 +12,7 @@ function formatTime(time, timezone) {
 	});
 }
 
-export async function getCityInfo(cityName, latitude, longitude) {
+export async function fetchCityData(cityName, latitude, longitude) {
 	try {
 		if (Math.random() < 0.1)
 			throw new Error('How unfortunate! The API Request Failed');
