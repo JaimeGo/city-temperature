@@ -28,7 +28,7 @@ wss.on('connection', function(ws) {
 		const apiResults = await Promise.all(apiPromises);
 		console.log('APIRESULTS', apiResults);
 		ws.send(JSON.stringify(apiResults));
-	}, 10000);
+	}(), 10000);
 
 	console.log('Websocket connection opened');
 

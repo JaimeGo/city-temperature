@@ -4,7 +4,7 @@ import {
 	getHourAndTemperature,
 	setHourAndTemperature
 } from '../redis';
-import getTimeInTimezone from './timezone';
+import formatTime from './formatTime';
 
 export async function getCityInfo(cityName, latitude, longitude) {
 	try {
@@ -18,7 +18,7 @@ export async function getCityInfo(cityName, latitude, longitude) {
 
 		const { currently, timezone } = response.data;
 		const { time, temperature } = currently;
-		const hour = getTimeInTimezone(time, timezone);
+		const hour = formatTime(time, timezone);
 		await setHourAndTemperature(cityName, hour, temperature.toString());
 		console.log('RESPONSE OBJECT', { name: cityName, hour, temperature });
 		return { name: cityName, hour, temperature };
