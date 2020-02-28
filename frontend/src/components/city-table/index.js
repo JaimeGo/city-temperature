@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CityItem from "../city-item";
 import "./styles.css";
 import socketIOClient from "socket.io-client";
@@ -19,25 +19,27 @@ const CityTable = () => {
 
   const socket = socketIOClient("https://wsserver-temperature.herokuapp.com");
 
-  socket.on("New City Info", responseCities => {
-    // console.log("Event data:", event.data);
-    // const responseCities = JSON.parse(data);
-    console.log("RESPONSE CITIES", responseCities);
+  useEffect(() => {
+    socket.on("New City Info", responseCities => {
+      // console.log("Event data:", event.data);
+      // const responseCities = JSON.parse(data);
+      console.log("RESPONSE CITIES", responseCities);
 
-    let newCities = cities;
+      let newCities = cities;
 
-    responseCities.forEach(responseCity => {
-      const { name, hour, temperature } = responseCity;
-      if (hour && temperature) {
-        newCities[name] = { hour, temperature };
-      }
+      responseCities.forEach(responseCity => {
+        const { name, hour, temperature } = responseCity;
+        if (hour && temperature) {
+          newCities[name] = { hour, temperature };
+        }
+      });
+      console.log("NEW CITIES", newCities);
+
+      setCities(newCities, () => {
+        console.log("STATE CITIES", cities);
+      });
     });
-    console.log("NEW CITIES", newCities);
-
-    setCities(newCities, () => {
-      console.log("STATE CITIES", cities);
-    });
-  });
+  }, [cities]);
 
   console.log("ENTRIES", Object.entries(cities));
 
