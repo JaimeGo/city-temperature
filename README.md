@@ -1,4 +1,4 @@
-# city-weather
+# city-temperature
 
 ## Deployment de backend
 
