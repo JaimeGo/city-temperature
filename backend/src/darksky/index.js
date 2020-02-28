@@ -32,6 +32,7 @@ export async function getCityInfo(cityName, latitude, longitude) {
 			await registerApiError(cityName);
 		}
 		console.error(error);
-		return await { name: cityName, ...getHourAndTemperature(cityName) };
+		const hourAndTemperature = await getHourAndTemperature(cityName);
+		return await { name: cityName, ...hourAndTemperature };
 	}
 }
