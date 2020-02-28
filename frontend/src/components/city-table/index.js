@@ -16,35 +16,29 @@ const CityTable = () => {
     "Georgia (USA)": { hour: "--:--", temperature: "--" }
   });
 
-  useEffect(() => {
-    const ws = new WebSocket("wss://wsserver-temperature.herokuapp.com");
+  const ws = new WebSocket("wss://wsserver-temperature.herokuapp.com");
 
-    ws.onmessage = event => {
-      console.log("Event data:", event.data);
-      const responseCities = JSON.parse(event.data);
-      console.log("RESPONSE CITIES", responseCities);
+  ws.onmessage = event => {
+    console.log("Event data:", event.data);
+    const responseCities = JSON.parse(event.data);
+    console.log("RESPONSE CITIES", responseCities);
 
-      let newCities = cities;
+    let newCities = cities;
 
-      responseCities.forEach(responseCity => {
-        const { name, hour, temperature } = responseCity;
-        if (hour && temperature) {
-          newCities[name] = { hour, temperature };
-        }
-      });
-      console.log("NEW CITIES", newCities);
+    responseCities.forEach(responseCity => {
+      const { name, hour, temperature } = responseCity;
+      if (hour && temperature) {
+        newCities[name] = { hour, temperature };
+      }
+    });
+    console.log("NEW CITIES", newCities);
 
-      return setCities(newCities, () => {
-        console.log("STATE CITIES", cities);
-      });
-    };
+    setCities(newCities, () => {
+      console.log("STATE CITIES", cities);
+    });
+  };
 
-    console.log("ENTRIES", Object.entries(cities));
-
-    return () => {
-      ws.close();
-    };
-  }, [cities]);
+  console.log("ENTRIES", Object.entries(cities));
 
   return (
     <div style={{ backgroundImage: `url(${backgroundImage})` }}>
