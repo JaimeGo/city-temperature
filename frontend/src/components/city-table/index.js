@@ -19,7 +19,7 @@ const CityTable = () => {
   useEffect(() => {
     const ws = new WebSocket("wss://wsserver-temperature.herokuapp.com");
 
-    ws.onmessage = async event => {
+    ws.onmessage = event => {
       console.log("Event data:", event.data);
       const responseCities = JSON.parse(event.data);
       console.log("RESPONSE CITIES", responseCities);
@@ -34,7 +34,7 @@ const CityTable = () => {
       });
       console.log("NEW CITIES", newCities);
 
-      await setCities(newCities);
+      return setCities(newCities);
     };
 
     console.log("ENTRIES", Object.entries(cities));
