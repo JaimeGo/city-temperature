@@ -45,7 +45,7 @@ const CityTable = () => {
   // Runs only once, when the page loads for the first time or reloads
   useEffect(() => {
     const ws = handleWebsocketConnection();
-    ws.send("Page loaded");
+    ws.onopen = () => ws.send("Page loaded");
     return () => {
       ws.close();
     };
