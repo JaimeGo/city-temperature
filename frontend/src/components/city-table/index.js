@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import CityItem from "../city-item";
 import "./styles.css";
 import socketIOClient from "socket.io-client";
-import cloneDeep from 'lodash.clonedeep';
+import cloneDeep from "lodash.clonedeep";
 
 import backgroundImage from "../../assets/images/background-image.jpg";
 
@@ -39,6 +39,10 @@ const CityTable = () => {
       setCities(newCities, () => {
         console.log("STATE CITIES", cities);
       });
+
+      return () => {
+        socket.disconnect();
+      };
     });
   }, [cities]);
 

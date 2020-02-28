@@ -26,7 +26,6 @@ io.on('connection', function(socket) {
 			return await getCityInfo(cityName, latitude, longitude);
 		});
 		const apiResults = await Promise.all(apiPromises);
-		console.log('APIRESULTS', apiResults);
 		socket.emit('New City Info', apiResults);
 	}, 10000);
 
