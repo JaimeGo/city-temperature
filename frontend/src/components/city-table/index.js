@@ -41,7 +41,7 @@ const CityTable = () => {
       });
 
       return () => {
-        socket.disconnect();
+        socket.emit("disconnect");
       };
     });
   }, [cities]);
