@@ -18,17 +18,20 @@ const namesOfCities = [
 	'Georgia (USA)'
 ];
 
-wss.on('connection', function(ws) {
-	const intervalId = setInterval(async function() {
-		const apiPromises = namesOfCities.map(async cityName => {
-			const { latitude, longitude } = await getCoordinates(cityName);
+const intervalFunction = async function(ws) {
+	const apiPromises = namesOfCities.map(async cityName => {
+		const { latitude, longitude } = await getCoordinates(cityName);
 
-			return await getCityInfo(cityName, latitude, longitude);
-		});
-		const apiResults = await Promise.all(apiPromises);
-		console.log('APIRESULTS', apiResults);
-		ws.send(JSON.stringify(apiResults));
-	}(), 10000);
+		return await getCityInfo(cityName, latitude, longitude);
+	});
+	const apiResults = await Promise.all(apiPromises);
+	console.log('APIRESULTS', apiResults);
+	ws.send(JSON.stringify(apiResults));
+};
+
+wss.on('connection', function(ws) {
+	intervalFunction(ws);
+	const intervalId = setInterval(intervalFunction(ws), 10000);
 
 	console.log('Websocket connection opened');
 
