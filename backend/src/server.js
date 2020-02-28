@@ -29,9 +29,9 @@ const intervalFunction = async function(ws) {
 	ws.send(JSON.stringify(apiResults));
 };
 
-wss.on('connection', function(ws) {
-	intervalFunction(ws);
-	const intervalId = setInterval(intervalFunction(ws), 10000);
+wss.on('connection', async function(ws) {
+	await intervalFunction(ws);
+	const intervalId = setInterval(async () => await intervalFunction(ws), 10000);
 
 	console.log('Websocket connection opened');
 
