@@ -39,7 +39,13 @@ redis.on('connect', function() {
 
 	citiesInfo.forEach(async cityInfo => {
 		const { latitude, longitude } = cityInfo;
-		await redis.set(cityInfo.name, JSON.stringify({ latitude, longitude }));
+		await redis.hmset(
+			cityInfo.name,
+			'latitude',
+			latitude,
+			'longitude',
+			longitude
+		);
 	});
 	console.log(
 		'The latitude and the longitude of each city was inserted to Redis'

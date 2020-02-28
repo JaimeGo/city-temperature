@@ -1,5 +1,9 @@
-import apiClient from './apiClient';
-import { registerApiError } from '../redis';
+import darkskyClient from './darkskyClient';
+import {
+	registerApiError,
+	getHourAndTemperature,
+	setHourAndTemperature
+} from '../redis';
 
 export async function getCityInfo(cityName, latitude, longitude) {
 	try {
@@ -8,7 +12,7 @@ export async function getCityInfo(cityName, latitude, longitude) {
 			throw new Error('How unfortunate! The API Request Failed');
 
 		console.log('START CALL TO API');
-		const response = await apiClient.get(`/${latitude},${longitude}`);
+		const response = await darkskyClient.get(`/${latitude},${longitude}`);
 		console.log('DARKSKYRESPONSE CURRENTLY', response.data.currently);
 
 		const { currently } = response.data;
@@ -16,6 +20,7 @@ export async function getCityInfo(cityName, latitude, longitude) {
 		const currentDate = new Date(time);
 		console.log('CURRENT DATE', currentDate);
 		const hour = `${currentDate.getHours()}:${currentDate.getMinutes()}`;
+		await setHourAndTemperature(cityName, hour, temperature);
 		console.log('RESPONSE OBJECT', { name: cityName, hour, temperature });
 		return { name: cityName, hour, temperature };
 	} catch (error) {
@@ -23,7 +28,6 @@ export async function getCityInfo(cityName, latitude, longitude) {
 			await registerApiError(cityName);
 		}
 		console.error(error);
+		return await getHourAndTemperature(cityName);
 	}
-
-	return { name: cityName, hour: null, temperature: null };
 }
