@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CityItem from "../city-item";
 import "./styles.css";
 import socketIOClient from "socket.io-client";
+import cloneDeep from 'lodash.clonedeep';
 
 import backgroundImage from "../../assets/images/background-image.jpg";
 
@@ -25,7 +26,7 @@ const CityTable = () => {
       // const responseCities = JSON.parse(data);
       console.log("RESPONSE CITIES", responseCities);
 
-      let newCities = cities;
+      let newCities = cloneDeep(cities);
 
       responseCities.forEach(responseCity => {
         const { name, hour, temperature } = responseCity;
